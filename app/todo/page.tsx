@@ -14,17 +14,25 @@ export default function ToDo() {
   const [taskName, setTaskName] = useState("");
   const [dueDate, setDueDate] = useState("");
 
+  let item: string | null = "";
+  if (typeof window !== "undefined") {
+    // Perform localStorage action
+    item = localStorage.getItem("tasks");
+  }
+
   useEffect(() => {
+    if (!item) return;
     const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
     console.log(tasks);
     setTasks(tasks);
   }, []);
 
   useEffect(() => {
+    if (!item) return;
     if (tasks.length !== 0) {
       localStorage.setItem("tasks", JSON.stringify(tasks));
     }
-  }, [tasks]);
+  }, [tasks, item]);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -38,10 +46,10 @@ export default function ToDo() {
           onChange={(e) => setTaskName(e.target.value)}
         />
         <DatePicker
-            onChange={(date: Date) => setDueDate(date.toDateString())}
-            placeholderText="Choose Due Date"
-            selected={dueDate ? new Date(dueDate) : null}
-            className="p-3 border border-gray-300 rounded-lg w-96 mt-4"
+          onChange={(date: Date) => setDueDate(date.toDateString())}
+          placeholderText="Choose Due Date"
+          selected={dueDate ? new Date(dueDate) : null}
+          className="p-3 border border-gray-300 rounded-lg w-96 mt-4"
         />
         <button
           className="mt-4 p-3 bg-blue-500 text-white rounded-lg w-96"
@@ -57,7 +65,9 @@ export default function ToDo() {
             ])
           }
         >
-          {taskName === "" || dueDate === "" ? "Complete the above fields to add task" : "Add Task"}
+          {taskName === "" || dueDate === ""
+            ? "Complete the above fields to add task"
+            : "Add Task"}
         </button>
       </div>
       <div className="flex flex-col items-center justify-center mt-8">
