@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -13,6 +13,16 @@ export default function ToDo() {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [taskName, setTaskName] = useState("");
     const [dueDate, setDueDate] = useState(""); 
+
+    // useEffect(() => {
+    //     const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+    //     console.log(tasks)
+    //     setTasks(tasks);
+    // }, []);
+
+    // useEffect(() => {
+    //     localStorage.setItem("tasks", JSON.stringify([]));
+    // }, [tasks]);
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
