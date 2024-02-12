@@ -5,10 +5,7 @@ import { createContext, use, useEffect } from "react";
 export default function Home() {
   let item;
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Perform localStorage action
-      item = localStorage.getItem('tasks')
-    }
+    item = localStorage.getItem('tasks') || "[]";
   }, []);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">

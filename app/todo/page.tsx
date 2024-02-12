@@ -14,25 +14,17 @@ export default function ToDo() {
   const [taskName, setTaskName] = useState("");
   const [dueDate, setDueDate] = useState("");
 
-  let item: string | null = "";
-  if (typeof window !== "undefined") {
-    // Perform localStorage action
-    item = localStorage.getItem("tasks");
-  }
-
   useEffect(() => {
-    if (!item) return;
     const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
     console.log(tasks);
     setTasks(tasks);
   }, []);
 
   useEffect(() => {
-    if (!item) return;
     if (tasks.length !== 0) {
       localStorage.setItem("tasks", JSON.stringify(tasks));
     }
-  }, [tasks, item]);
+  }, [tasks]);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
