@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
-import { createContext, use, useEffect } from "react";
+import { createContext, use, useEffect, useState } from "react";
 
 export default function Home() {
-  let item;
+  const [item, setItem] = useState("");
   useEffect(() => {
-    item = localStorage.getItem('tasks') || "[]";
+    setItem(localStorage.getItem('tasks') || "[]");
   }, []);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
