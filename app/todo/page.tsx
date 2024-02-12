@@ -14,18 +14,6 @@ export default function ToDo() {
   const [taskName, setTaskName] = useState("");
   const [dueDate, setDueDate] = useState("");
 
-  useEffect(() => {
-    const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
-    console.log(tasks);
-    setTasks(tasks);
-  }, []);
-
-  useEffect(() => {
-    if (tasks.length !== 0) {
-      localStorage.setItem("tasks", JSON.stringify(tasks));
-    }
-  }, [tasks]);
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1 className="text-4xl font-bold">To Do</h1>
