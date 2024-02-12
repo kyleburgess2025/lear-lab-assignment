@@ -38,10 +38,10 @@ export default function ToDo() {
           onChange={(e) => setTaskName(e.target.value)}
         />
         <DatePicker
-          onChange={(date: Date) => setDueDate(date.toDateString())}
-          placeholderText="Choose Due Date"
-          selected={dueDate}
-          className="p-3 border border-gray-300 rounded-lg w-96 mt-4"
+            onChange={(date: Date) => setDueDate(date.toDateString())}
+            placeholderText="Choose Due Date"
+            selected={dueDate ? new Date(dueDate) : null}
+            className="p-3 border border-gray-300 rounded-lg w-96 mt-4"
         />
         <button
           className="mt-4 p-3 bg-blue-500 text-white rounded-lg w-96"
